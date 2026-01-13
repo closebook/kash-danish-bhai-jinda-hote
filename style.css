@@ -2130,3 +2130,41 @@ select:focus,
         font-size: 0.8rem;
     }
 }
+
+/* ============================
+   LOGO STYLES
+   ============================ */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logo-image {
+    height: 55px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-image {
+    transform: scale(1.05);
+}
+
+
+
+/* Hide text on mobile, show only logo */
+@media (max-width: 768px) {
+    
+    .logo-image {
+        height: 35px;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+    .logo-image {
+        height: 40px;
+    }
+}

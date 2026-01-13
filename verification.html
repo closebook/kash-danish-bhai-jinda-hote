@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Certificate | Zensora Tech</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Verification Page Specific Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+            color: #1f2937;
+        }
+
+        .verification-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1f2937;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: #1f2937;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: #2563eb;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #1f2937;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .verification-hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            margin-bottom: 40px;
+        }
+
+        .verification-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #1e40af;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .verification-hero p {
+            font-size: 1.2rem;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        /* Verification Form */
+        .verification-card {
+            background: white;
+            border-radius: 16px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto 60px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .verification-card h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #1e40af;
+            font-size: 2.2rem;
+        }
+
+        .verification-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #374151;
+            font-size: 1.1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #9ca3af;
+        }
+
+        .verify-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .verify-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px rgba(16, 185, 129, 0.2);
+        }
+
+        .verify-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Certificate Display */
+        .certificate-result {
+            display: none;
+            margin-top: 40px;
+            padding: 40px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .certificate-result.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .result-header h3 {
+            font-size: 2rem;
+            color: #10b981;
+            margin-bottom: 10px;
+        }
+
+        .result-header p {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .certificate-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .detail-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .detail-section h4 {
+            color: #1e40af;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-section h4 i {
+            color: #3b82f6;
+        }
+
+        .detail-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 500;
+            color: #6b7280;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 1.1rem;
+        }
+
+        .certificate-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+        }
+
+        .verify-another-btn {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .verify-another-btn:hover {
+            background: #e5e7eb;
+        }
+
+        /* Error State */
+        .error-state {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border: 1px solid #fecaca;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 30px;
+            display: none;
+        }
+
+        .error-state.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        .error-icon {
+            font-size: 4rem;
+            color: #ef4444;
+            margin-bottom: 20px;
+        }
+
+        .error-state h3 {
+            color: #991b1b;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .error-state p {
+            color: #7f1d1d;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .retry-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .retry-btn:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+        /* Loading State */
+        .loading-state {
+            text-align: center;
+            padding: 60px 40px;
+            display: none;
+        }
+
+        .loading-state.show {
+            display: block;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #e5e7eb;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 30px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-state p {
+            color: #6b7280;
+            font-size: 1.2rem;
+        }
+
+        /* Instructions Section */
+        .instructions-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .instructions-section h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1e40af;
+            font-size: 1.8rem;
+        }
+
+        .instructions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .instruction-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .instruction-icon {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+
+        .instruction-card h4 {
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .instruction-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111827;
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-col p {
+            color: #9ca3af;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #374151;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: #3b82f6;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #9ca3af;
+            margin-bottom: 15px;
+        }
+
+        .contact-info i {
+            color: #3b82f6;
+            margin-top: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                z-index: 99;
+            }
+            
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .verification-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .verification-card {
+                padding: 30px 20px;
+            }
+            
+            .verification-card h2 {
+                font-size: 1.8rem;
+            }
+            
+            .certificate-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .certificate-actions {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .instructions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .verification-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .verification-hero p {
+                font-size: 1rem;
+            }
+            
+            .form-group input {
+                padding: 14px 16px;
+                font-size: 1rem;
+            }
+            
+            .verify-btn {
+                padding: 16px 30px;
+                font-size: 1.1rem;
+            }
+            
+            .detail-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Zensora Tech" class="logo-image">
+            </a>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="internship.html">Internship</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+                <li><a href="verification.html" class="active">Verify Certificate</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Verification Content -->
+    <div class="verification-container">
+        <!-- Hero Section -->
+        <section class="verification-hero">
+            <h1>Certificate Verification</h1>
+            <p>Verify the authenticity of your Zensora Tech certificate by entering your Certificate ID and Name. Our secure system will validate your credentials instantly.</p>
+        </section>
+
+        <!-- Verification Form -->
+        <div class="verification-card">
+            <h2>Verify Your Certificate</h2>
+            
+            <!-- Loading State -->
+            <div class="loading-state" id="loadingState">
+                <div class="loading-spinner"></div>
+                <p>Verifying your certificate...</p>
+            </div>
+
+            <!-- Verification Form -->
+            <form class="verification-form" id="verificationForm">
+                <div class="form-group">
+                    <label for="certificateId">
+                        <i class="fas fa-id-card"></i> Certificate ID
+                    </label>
+                    <input type="text" id="certificateId" 
+                           placeholder="Enter your Certificate ID (e.g., ZS-CERT-2024-01-001)"
+                           required>
+                    <small style="color: #6b7280; font-size: 0.9rem; margin-top: 5px; display: block;">
+                        Example: ZS-CERT-YYYY-MM-XXX
+                    </small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="studentName">
+                        <i class="fas fa-user"></i> Full Name
+                    </label>
+                    <input type="text" id="studentName" 
+                           placeholder="Enter your full name as it appears on the certificate"
+                           required>
+                </div>
+                
+                <button type="submit" class="verify-btn" id="verifyBtn">
+                    <i class="fas fa-shield-alt"></i> Verify Certificate
+                </button>
+            </form>
+
+            <!-- Certificate Result (Initially Hidden) -->
+            <div class="certificate-result" id="certificateResult">
+                <div class="result-header">
+                    <h3><i class="fas fa-check-circle"></i> Certificate Verified Successfully!</h3>
+                    <p>Your certificate has been verified and is authentic</p>
+                </div>
+                
+                <div class="certificate-details">
+                    <div class="detail-section">
+                        <h4><i class="fas fa-user-graduate"></i> Student Information</h4>
+                        <div class="detail-item">
+                            <div class="detail-label">Full Name</div>
+                            <div class="detail-value" id="resultName">-</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Certificate ID</div>
+                            <div class="detail-value" id="resultCertId">-</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Course/Domain</div>
+                            <div class="detail-value" id="resultCourse">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4><i class="fas fa-calendar-alt"></i> Certificate Details</h4>
+                        <div class="detail-item">
+                            <div class="detail-label">Issue Date</div>
+                            <div class="detail-value" id="resultIssueDate">-</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Completion Date</div>
+                            <div class="detail-value" id="resultCompletionDate">-</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Verification Status</div>
+                            <div class="detail-value" style="color: #10b981; font-weight: bold;">
+                                <i class="fas fa-check-circle"></i> Verified
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="certificate-actions">
+                    <button class="action-btn download-btn" id="downloadBtn">
+                        <i class="fas fa-download"></i> Download Verification Report
+                    </button>
+                    <button class="action-btn verify-another-btn" id="verifyAnotherBtn">
+                        <i class="fas fa-redo"></i> Verify Another Certificate
+                    </button>
+                </div>
+            </div>
+
+            <!-- Error State (Initially Hidden) -->
+            <div class="error-state" id="errorState">
+                <div class="error-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3>Certificate Not Found</h3>
+                <p id="errorMessage">We couldn't find a certificate matching the provided details. Please check your information and try again.</p>
+                <button class="retry-btn" id="retryBtn">
+                    <i class="fas fa-redo"></i> Try Again
+                </button>
+            </div>
+        </div>
+
+        <!-- Instructions Section -->
+        <section class="instructions-section">
+            <h3>How to Verify Your Certificate</h3>
+            <div class="instructions-grid">
+                <div class="instruction-card">
+                    <div class="instruction-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h4>Find Your Certificate ID</h4>
+                    <p>Locate your unique Certificate ID from your certificate document. It usually starts with "ZS-CERT-".</p>
+                </div>
+                
+                <div class="instruction-card">
+                    <div class="instruction-icon">
+                        <i class="fas fa-keyboard"></i>
+                    </div>
+                    <h4>Enter Details</h4>
+                    <p>Enter your Certificate ID and Full Name exactly as they appear on your certificate.</p>
+                </div>
+                
+                <div class="instruction-card">
+                    <div class="instruction-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Instant Verification</h4>
+                    <p>Our system will instantly verify your certificate against our official records.</p>
+                </div>
+                
+                <div class="instruction-card">
+                    <div class="instruction-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h4>Download Proof</h4>
+                    <p>Download the verification report as proof of authenticity for employers or institutions.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Zensora Tech</h3>
+                    <p>Providing innovative IT solutions and offering verified certificates for our students and interns.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="internship.html">Internship</a></li>
+                        <li><a href="jobs.html">Jobs</a></li>
+                        <li><a href="verification.html">Certificate Verification</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Innovation City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> certificates@zensoratech.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear">2023</span> Zensora Tech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ==============================================
+        // CONFIGURATION - UPDATE THIS URL
+        // ==============================================
+        // Replace this with your DEPLOYED Google Apps Script URL
+        const API_URL = 'https://script.google.com/macros/s/AKfycbyR0TrIH6D9RRjqGizaLAW49fHaV9d0nNq7mGgPxQ8CfuKy0Mnk6A5O4n-cO_ppyg_MMA/exec';
+        // ==============================================
+
+        // DOM Elements
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const verificationForm = document.getElementById('verificationForm');
+        const verifyBtn = document.getElementById('verifyBtn');
+        const certificateResult = document.getElementById('certificateResult');
+        const errorState = document.getElementById('errorState');
+        const loadingState = document.getElementById('loadingState');
+        const retryBtn = document.getElementById('retryBtn');
+        const verifyAnotherBtn = document.getElementById('verifyAnotherBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        
+        // Result display elements
+        const resultName = document.getElementById('resultName');
+        const resultCertId = document.getElementById('resultCertId');
+        const resultCourse = document.getElementById('resultCourse');
+        const resultIssueDate = document.getElementById('resultIssueDate');
+        const resultCompletionDate = document.getElementById('resultCompletionDate');
+        const errorMessage = document.getElementById('errorMessage');
+        
+        // Current year for footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Close mobile menu when clicking a link
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        }
+
+        // API Request Function using JSONP
+        async function apiRequest(data) {
+            return new Promise((resolve, reject) => {
+                // Create unique callback name
+                const callbackName = 'callback_' + Date.now() + '_' + Math.random().toString(36).substr(2);
+                
+                // Create script element for JSONP
+                const script = document.createElement('script');
+                
+                // Build URL with JSONP callback
+                const params = new URLSearchParams();
+                params.append('callback', callbackName);
+                params.append('data', JSON.stringify(data));
+                
+                const url = `${API_URL}?${params.toString()}`;
+                script.src = url;
+                
+                // Define callback function
+                window[callbackName] = function(response) {
+                    // Clean up
+                    delete window[callbackName];
+                    document.head.removeChild(script);
+                    
+                    resolve(response);
+                };
+                
+                // Error handling
+                script.onerror = function() {
+                    delete window[callbackName];
+                    document.head.removeChild(script);
+                    reject(new Error('Network error. Please check your internet connection.'));
+                };
+                
+                // Add script to head
+                document.head.appendChild(script);
+            });
+        }
+
+        // Fetch all certificates
+        async function getAllCertificates() {
+            try {
+                const result = await apiRequest({
+                    action: 'get_certificates',
+                    token: 'verification_only'
+                });
+
+                if (result.success) {
+                    return result.certificates || [];
+                } else {
+                    throw new Error('Failed to fetch certificates');
+                }
+            } catch (error) {
+                console.error('Error fetching certificates:', error);
+                throw error;
+            }
+        }
+
+        // Verify Certificate
+        // Verify Certificate with Similarity Check
+        async function verifyCertificate(certificateId, studentName) {
+            try {
+                // Get all certificates
+                const certificates = await getAllCertificates();
+                
+                // Find matching certificate by ID first
+                const certificate = certificates.find(cert => {
+                    // Case-insensitive exact match for certificate ID
+                    return cert.certificateId && 
+                        cert.certificateId.toLowerCase() === certificateId.toLowerCase().trim();
+                });
+
+                if (!certificate) {
+                    return {
+                        success: false,
+                        message: 'Certificate ID not found. Please check your Certificate ID.'
+                    };
+                }
+                
+                // Now verify the name
+                const cleanInputName = studentName.toLowerCase().trim()
+                    .replace(/\s+/g, ' ')  // Normalize spaces
+                    .replace(/[^\w\s]/g, '') // Remove special characters
+                    .trim();
+                
+                const cleanCertName = certificate.studentName ? certificate.studentName.toLowerCase().trim()
+                    .replace(/\s+/g, ' ')
+                    .replace(/[^\w\s]/g, '')
+                    .trim() : '';
+                
+                // Calculate name similarity (Jaro-Winkler distance)
+                function calculateSimilarity(str1, str2) {
+                    if (!str1 || !str2) return 0;
+
+                    // Minimum full-name length safeguard
+                    if (str1.length < 5) return 0;
+
+                    const words1 = str1.split(' ');
+                    const words2 = str2.split(' ');
+
+                    // Must have same number of words
+                    if (words1.length !== words2.length) return 0;
+
+                    // Exact word match (order-insensitive)
+                    const allWordsMatch = words1.every(word =>
+                        word.length >= 2 &&                // avoid single-letter abuse
+                        words2.includes(word)              // NO prefix matching
+                    );
+
+                    return allWordsMatch ? 1 : 0;
+                }
+
+                
+                const similarity = calculateSimilarity(cleanInputName, cleanCertName);
+                
+                // Require high similarity (at least 0.8)
+                if (similarity >= 0.8) {
+                    return {
+                        success: true,
+                        certificate: certificate,
+                        message: 'Certificate verified successfully'
+                    };
+                } else {
+                    return {
+                        success: false,
+                        certificate: certificate, // Still return certificate for debugging
+                        message: 'Name does not match. Please enter your full name exactly as it appears on the certificate.'
+                    };
+                }
+            } catch (error) {
+                console.error('Verification error:', error);
+                return {
+                    success: false,
+                    message: 'Verification failed. Please try again later.'
+                };
+            }
+        }
+
+        // Format Date
+        function formatDate(dateString) {
+            if (!dateString) return 'Not specified';
+            try {
+                const date = new Date(dateString);
+                if (isNaN(date.getTime())) return 'Invalid date';
+                
+                return date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            } catch (error) {
+                return 'Invalid date';
+            }
+        }
+
+        // Show loading state
+        function showLoading() {
+            loadingState.classList.add('show');
+            verificationForm.style.display = 'none';
+            certificateResult.classList.remove('show');
+            errorState.classList.remove('show');
+        }
+
+        // Hide loading state
+        function hideLoading() {
+            loadingState.classList.remove('show');
+            verificationForm.style.display = 'flex';
+        }
+
+        // Show certificate result
+        function showCertificateResult(certificate) {
+            // Update result fields
+            resultName.textContent = certificate.studentName || 'N/A';
+            resultCertId.textContent = certificate.certificateId || 'N/A';
+            resultCourse.textContent = certificate.course || 'N/A';
+            resultIssueDate.textContent = formatDate(certificate.issueDate);
+            resultCompletionDate.textContent = certificate.completionDate ? 
+                formatDate(certificate.completionDate) : 'Not completed';
+            
+            // Show result
+            certificateResult.classList.add('show');
+            verificationForm.style.display = 'none';
+            errorState.classList.remove('show');
+        }
+
+        // Show error state
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorState.classList.add('show');
+            verificationForm.style.display = 'none';
+            certificateResult.classList.remove('show');
+        }
+
+        // Reset form
+        function resetForm() {
+            verificationForm.reset();
+            verificationForm.style.display = 'flex';
+            certificateResult.classList.remove('show');
+            errorState.classList.remove('show');
+            loadingState.classList.remove('show');
+            verifyBtn.disabled = false;
+            verifyBtn.innerHTML = '<i class="fas fa-shield-alt"></i> Verify Certificate';
+        }
+
+        // Handle form submission
+        verificationForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const certificateId = document.getElementById('certificateId').value.trim();
+            const studentName = document.getElementById('studentName').value.trim();
+            
+            // Basic validation
+            if (!certificateId || !studentName) {
+                showError('Please enter both Certificate ID and Name.');
+                return;
+            }
+            
+            // Validate certificate ID format
+            if (!certificateId.toUpperCase().startsWith('ZS-CERT-')) {
+                showError('Invalid Certificate ID format. Certificate IDs start with "ZS-CERT-".');
+                return;
+            }
+            
+            // Show loading state
+            showLoading();
+            verifyBtn.disabled = true;
+            verifyBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+            
+            try {
+                // Verify certificate
+                const result = await verifyCertificate(certificateId, studentName);
+                
+                if (result.success) {
+                    showCertificateResult(result.certificate);
+                } else {
+                    showError(result.message);
+                }
+            } catch (error) {
+                showError('Network error. Please check your internet connection and try again.');
+            } finally {
+                hideLoading();
+                verifyBtn.disabled = false;
+                verifyBtn.innerHTML = '<i class="fas fa-shield-alt"></i> Verify Certificate';
+            }
+        });
+
+        // Handle retry button
+        retryBtn.addEventListener('click', resetForm);
+
+        // Handle verify another button
+        verifyAnotherBtn.addEventListener('click', resetForm);
+
+        // Handle download button
+        downloadBtn.addEventListener('click', function() {
+            const certificateData = {
+                name: resultName.textContent,
+                certId: resultCertId.textContent,
+                course: resultCourse.textContent,
+                issueDate: resultIssueDate.textContent,
+                completionDate: resultCompletionDate.textContent,
+                verificationDate: new Date().toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                }),
+                verificationTime: new Date().toLocaleTimeString('en-US')
+            };
+            
+            // Create download content
+            const content = `
+ZENSORA TECH - CERTIFICATE VERIFICATION REPORT
+==============================================
+
+CERTIFICATE VERIFICATION CONFIRMED
+-----------------------------------
+
+This document confirms that the certificate has been successfully verified 
+through the official Zensora Tech verification system.
+
+STUDENT INFORMATION
+-------------------
+Full Name: ${certificateData.name}
+Certificate ID: ${certificateData.certId}
+Course/Domain: ${certificateData.course}
+
+CERTIFICATE DETAILS
+-------------------
+Issue Date: ${certificateData.issueDate}
+Completion Date: ${certificateData.completionDate}
+
+VERIFICATION DETAILS
+--------------------
+Verification Date: ${certificateData.verificationDate}
+Verification Time: ${certificateData.verificationTime}
+Verification Status: ✅ VERIFIED AND AUTHENTIC
+
+OFFICIAL REMARKS
+----------------
+This certificate has been verified against the official records of 
+Zensora Tech and has been confirmed as authentic.
+
+The certificate holder named above has successfully completed their 
+program with Zensora Tech.
+
+This verification report can be used as proof of certificate authenticity 
+for employment, education, or professional purposes.
+
+==============================================
+Zensora Tech - Official Certificate Verification
+Contact: certificates@zensoratech.com
+Website: www.zensoratech.com
+==============================================
+            `;
+            
+            // Create download link
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Zensora-Verification-${certificateData.certId}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            // Show download confirmation
+            alert('Verification report downloaded successfully!');
+        });
+
+        // Auto-focus certificate ID field
+        document.getElementById('certificateId').focus();
+
+        // Add input formatting for certificate ID
+        const certIdInput = document.getElementById('certificateId');
+        certIdInput.addEventListener('input', function() {
+            this.value = this.value.toUpperCase();
+        });
+    </script>
+</body>
+</html>
