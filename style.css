@@ -577,10 +577,9 @@ h1, h2, h3, h4 {
     overflow: hidden;
 }
 
-.map-image img {
-    width: 100%;
-    height: auto;
-    display: block;
+.map-image iframe {
+    border-radius: 10px;
+    display: flex;
 }
 
 .map p {
@@ -803,6 +802,10 @@ footer {
     
     .benefit {
         min-width: 120px;
+    }
+
+    .map-image iframe{
+        width: auto;
     }
 }
 
@@ -2166,5 +2169,78 @@ select:focus,
 @media (max-width: 480px) {
     .logo-image {
         height: 40px;
+    }
+}
+
+/* Legal Dropdown Styles */
+.legal-dropdown {
+    position: relative;
+}
+
+.legal-dropdown > a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 10px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.legal-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu a {
+    padding: 10px 20px;
+    display: block;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f3f4f6;
+    color: var(--primary-color);
+}
+
+/* Mobile dropdown adjustments */
+@media (max-width: 768px) {
+    .legal-dropdown .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background-color: transparent;
+        padding-left: 20px;
+        display: none;
+    }
+    
+    .legal-dropdown:hover .dropdown-menu,
+    .legal-dropdown.active .dropdown-menu {
+        display: block;
+    }
+    
+    .dropdown-menu a {
+        padding: 8px 0;
     }
 }

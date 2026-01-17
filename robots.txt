@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block sensitive admin files
+Disallow: /admin/
+Disallow: /scripts/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://zensoratech.in/sitemap.xml

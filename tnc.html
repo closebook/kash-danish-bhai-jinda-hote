@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions - Zensora Tech</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* T&C Page Specific Styles */
+        .tnc-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .tnc-header {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .tnc-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .tnc-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tnc-content {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .tnc-section {
+            margin-bottom: 40px;
+        }
+
+        .tnc-section h2 {
+            color: #1e40af;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .tnc-section h3 {
+            color: #374151;
+            margin: 25px 0 15px 0;
+            font-size: 1.3rem;
+        }
+
+        .tnc-section p {
+            margin-bottom: 15px;
+            color: #4b5563;
+        }
+
+        .tnc-section ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .tnc-section li {
+            margin-bottom: 10px;
+            color: #4b5563;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .tnc-section li:before {
+            content: "•";
+            color: #1e40af;
+            font-weight: bold;
+            position: absolute;
+            left: -10px;
+        }
+
+        .important-note {
+            background: #f0f9ff;
+            border-left: 4px solid #1e40af;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+
+        .important-note h4 {
+            color: #1e40af;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .important-note h4 i {
+            font-size: 1.2rem;
+        }
+
+        .fee-details {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .fee-details h4 {
+            color: #059669;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .last-updated {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .contact-support {
+            background: #f0f9ff;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .contact-support h3 {
+            color: #1e40af;
+            margin-bottom: 15px;
+        }
+
+        .contact-support p {
+            margin-bottom: 20px;
+        }
+
+        .contact-support a {
+            color: #1e40af;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-support a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .tnc-container {
+                padding: 20px 15px;
+            }
+            
+            .tnc-header {
+                padding: 40px 20px;
+            }
+            
+            .tnc-header h1 {
+                font-size: 2rem;
+            }
+            
+            .tnc-content {
+                padding: 25px;
+            }
+            
+            .tnc-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .tnc-section h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tnc-content {
+                padding: 20px;
+            }
+            
+            .important-note,
+            .fee-details,
+            .contact-support {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Zensora Tech" class="logo-image">
+            </a>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="internship.html">Internship</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+                <li><a href="verification.html">Verify Certificate</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#apply" class="btn-internship">Apply Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="tnc-header">
+        <div class="container">
+            <h1><i class="fas fa-file-contract"></i> Terms & Conditions</h1>
+            <p>Please read these terms carefully before participating in our programs</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="tnc-container">
+        <div class="tnc-content">
+            <div class="tnc-section">
+                <h2>Terms of Service</h2>
+                
+                <div class="important-note">
+                    <h4><i class="fas fa-exclamation-circle"></i> Important Notice</h4>
+                    <p>These terms govern your participation in Zensora Tech's internship programs and related services. By applying for or participating in our programs, you acknowledge that you have read, understood, and agree to be bound by these terms.</p>
+                </div>
+            </div>
+
+            <div class="tnc-section">
+                <h3>1. Operational Distinction and Service Classification</h3>
+                <p>It is of paramount importance to explicitly define the nature of the engagement between the applicant and Zensora Tech. The internship program is open-access and participation-based. Certification and formal recognition are merit-based and issued only upon successful completion and evaluation of assigned tasks.</p>
+                
+                <p>However, to facilitate the delivery of this program, we must distinguish between the professional opportunity and the administrative processing required to support it. The internship role is not for sale; rather, all fees charged are strictly for certification, administrative processing, evaluation, record verification, and certificate issuance, not for the internship offer itself.</p>
+                
+                <p>This clear separation ensures that the candidate is evaluated on skill, while the logistical costs are handled through a separate, tangible processing fee.</p>
+            </div>
+
+            <div class="tnc-section">
+                <h3>2. Administrative Verification and Code Review Costs</h3>
+                <p>Upon the participant's request for certification after successful completion of the internship, Zensora Tech incurs immediate operational costs related to the management of the assessment workflow. We are explicitly charging for the administrative cost of verifying the user's code and reviewing task submissions.</p>
+                
+                <p>This process requires significant resources to ensure that every submission is logged, checked for authenticity, and processed within our systems. The user acknowledges that this fee compensates the platform for the specific administrative overhead involved in tracking their progress and validating the technical integrity of their work throughout the program duration.</p>
+            </div>
+
+            <div class="tnc-section">
+                <h3>3. Allocation for Certification and ID Generation</h3>
+                <p>A primary component of this fee is allocated to the formal credentialing process. Specifically, we are charging for the administrative expense of generating a unique ID for every participant and processing their final certification. This fee covers the setup required to issue a valid, tracked, and serialized certificate upon completion.</p>
+                
+                <p>By remitting the nominal amount of Ninety-Nine Indian Rupees (₹99), the user is covering the direct costs associated with establishing their unique identity within our records and the subsequent generation of their professional credentials.</p>
+                
+                <div class="fee-details" style="background: #f8fafc; border: 1px solid #e5e7eb; border-left: 4px solid #6b7280;">
+                    <h4 style="color: #4b5563;"><i class="fas fa-info-circle"></i> Administrative Fee Details</h4>
+                    <p>The ₹99 fee covers the following administrative costs:</p>
+                    <ul style="color: #4b5563;">
+                        <li>Establishing unique identity within our records</li>
+                        <li>Technical verification of submitted work</li>
+                        <li>Generation of professional credentials</li>
+                        <li>Certificate serialization and tracking</li>
+                        <li>Administrative processing and documentation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tnc-section">
+                <h3>4. Terms of Usage and Refund Policy</h3>
+                <p>Because the administrative expenses regarding code verification setup, unique ID generation, and the processing of certification records are incurred by Zensora Tech immediately upon request, once the evaluation process has commenced or the certificate has been issued, the fee is non-refundable, except in cases of:</p>
+                
+                <ul>
+                    <li>Duplicate payment (accidental multiple payments for the same service)</li>
+                    <li>Verified technical error on our platform</li>
+                    <li>Failure to deliver the promised service due to technical issues</li>
+                </ul>
+                
+                <div class="important-note">
+                    <h4><i class="fas fa-ban"></i> Important Clarification</h4>
+                    <p>It must be understood without ambiguity that the payment of this fee provides access strictly to the assessment evaluation and certification issuance services; it does not constitute:</p>
+                    <ul>
+                        <li>A purchase of employment</li>
+                        <li>A binding guarantee of a future job offer</li>
+                        <li>A guarantee of permanent placement</li>
+                        <li>A contract extension with Zensora Tech or any of its third-party affiliates</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tnc-section">
+                <h3>5. Separation of Services and Training Programs</h3>
+                <p>Zensora Tech operates both educational training programs and commercial IT services. It is important to understand the distinction:</p>
+                
+                <ul>
+                    <li><strong>Internship/Training Programs:</strong> Educational initiatives designed for skill development and professional growth</li>
+                    <li><strong>Commercial IT Services:</strong> Client-focused professional services including web development, mobile app development, IT support, and consultancy</li>
+                </ul>
+                
+                <p>Participation in any internship or training program does not imply involvement in paid client work. Any commercial services offered by Zensora Tech are executed independently of the internship program.</p>
+            </div>
+
+            <div class="tnc-section">
+                <h3>6. Participant Responsibilities</h3>
+                <p>By participating in our programs, you agree to:</p>
+                
+                <ul>
+                    <li>Submit original work that you have created yourself</li>
+                    <li>Adhere to program deadlines and requirements</li>
+                    <li>Maintain professional conduct in all communications</li>
+                    <li>Provide accurate information in your application</li>
+                    <li>Respect intellectual property rights</li>
+                    <li>Not engage in any form of academic dishonesty or plagiarism</li>
+                </ul>
+            </div>
+
+            <div class="tnc-section">
+                <h3>7. Program Modifications and Termination</h3>
+                <p>Zensora Tech reserves the right to:</p>
+                
+                <ul>
+                    <li>Modify program structure, content, or requirements</li>
+                    <li>Reschedule or cancel programs due to insufficient enrollment or unforeseen circumstances</li>
+                    <li>Terminate a participant's involvement for violation of terms or unprofessional conduct</li>
+                    <li>Update these terms and conditions as needed</li>
+                </ul>
+                
+                <p>Participants will be notified of significant changes to program terms via email or platform announcements.</p>
+            </div>
+
+            <div class="contact-support">
+                <h3><i class="fas fa-question-circle"></i> Questions About Our Terms?</h3>
+                <p>If you have any questions about these Terms & Conditions, please contact us:</p>
+                <p>
+                    <strong>Email:</strong> <a href="mailto:admin@zensoratech.in">admin@zensoratech.in</a><br>
+                </p>
+            </div>
+
+            <div class="last-updated">
+                <p><i class="fas fa-history"></i> Last Updated: January 2026</p>
+                <p>These terms are effective as of the date shown above.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Zensora Tech</h3>
+                    <p>Providing innovative IT solutions and nurturing future tech talent through our internship program.</p>
+                    <div class="social-icons">
+                        <!-- <a href="#"><i class="fab fa-facebook"></i></a> -->
+                        <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
+                        <a href="https://www.linkedin.com/company/zensora-tech/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://t.me/zensoratech" target="_blank"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="tnc.html">Terms and Conditions</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#web-dev">Web Development</a></li>
+                        <li><a href="services.html#mobile-dev">Mobile App Development</a></li>
+                        <li><a href="services.html#it-support">IT Support</a></li>
+                        <li><a href="services.html#consultancy">IT Consultancy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Prayagraj, Uttar Pradesh</li>
+                        <!-- <li><i class="fas fa-phone"></i> +91 88084 95969</li> -->
+                        <li><i class="fas fa-envelope"></i> admin@zensoratech.in</li>
+                        <li><i class="fas fa-envelope"></i> support@zensoratech.in</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Zensora Tech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

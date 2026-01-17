@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Zensora Tech</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Privacy Policy Page Specific Styles */
+        .privacy-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .privacy-header {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .privacy-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .privacy-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .privacy-content {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .privacy-section {
+            margin-bottom: 40px;
+        }
+
+        .privacy-section h2 {
+            color: #059669;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .privacy-section h3 {
+            color: #374151;
+            margin: 25px 0 15px 0;
+            font-size: 1.3rem;
+        }
+
+        .privacy-section p {
+            margin-bottom: 15px;
+            color: #4b5563;
+        }
+
+        .privacy-section ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .privacy-section li {
+            margin-bottom: 10px;
+            color: #4b5563;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .privacy-section li:before {
+            content: "•";
+            color: #059669;
+            font-weight: bold;
+            position: absolute;
+            left: -10px;
+        }
+
+        .data-collection-box {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .data-collection-box h4 {
+            color: #0369a1;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .data-collection-box h4 i {
+            font-size: 1.2rem;
+        }
+
+        .data-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .data-type {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #059669;
+        }
+
+        .data-type h4 {
+            color: #059669;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .security-note {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+
+        .security-note h4 {
+            color: #92400e;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .security-note h4 i {
+            font-size: 1.2rem;
+        }
+
+        .policy-updates {
+            background: #f5f3ff;
+            border: 1px solid #ddd6fe;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .policy-updates h4 {
+            color: #7c3aed;
+            margin-bottom: 15px;
+        }
+
+        .last-updated {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .contact-privacy {
+            background: #ecfdf5;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .contact-privacy h3 {
+            color: #059669;
+            margin-bottom: 15px;
+        }
+
+        .contact-privacy p {
+            margin-bottom: 20px;
+        }
+
+        .contact-privacy a {
+            color: #059669;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-privacy a:hover {
+            text-decoration: underline;
+        }
+
+        .what-we-dont-collect {
+            background: #fef2f2;
+            border-left: 4px solid #dc2626;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+
+        .what-we-dont-collect h4 {
+            color: #991b1b;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .privacy-container {
+                padding: 20px 15px;
+            }
+            
+            .privacy-header {
+                padding: 40px 20px;
+            }
+            
+            .privacy-header h1 {
+                font-size: 2rem;
+            }
+            
+            .privacy-content {
+                padding: 25px;
+            }
+            
+            .privacy-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .privacy-section h3 {
+                font-size: 1.2rem;
+            }
+            
+            .data-types {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .privacy-content {
+                padding: 20px;
+            }
+            
+            .data-collection-box,
+            .security-note,
+            .policy-updates,
+            .contact-privacy {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Zensora Tech" class="logo-image">
+            </a>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="internship.html">Internship</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+                <li><a href="verification.html">Verify Certificate</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#apply" class="btn-internship">Apply Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="privacy-header">
+        <div class="container">
+            <h1><i class="fas fa-shield-alt"></i> Privacy Policy</h1>
+            <p>Protecting your privacy is our commitment</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="privacy-container">
+        <div class="privacy-content">
+            <div class="privacy-section">
+                <h2>Introduction</h2>
+                <p><strong>Zensora Tech</strong> values your privacy and is firmly committed to protecting the personal information shared with us. This policy outlines how we collect, use, and safeguard information related to our internship programs, training initiatives, and IT services to ensure transparency and trust.</p>
+                
+                <div class="security-note">
+                    <h4><i class="fas fa-lock"></i> Our Commitment</h4>
+                    <p>We believe in transparency about how we collect and use your data. This Privacy Policy explains our practices in simple terms so you can make informed decisions about your information.</p>
+                </div>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Information We Collect</h2>
+                <p>We may collect basic personal information necessary to facilitate our services, including:</p>
+                
+                <div class="data-types">
+                    <div class="data-type">
+                        <h4><i class="fas fa-user"></i> Personal Information</h4>
+                        <ul>
+                            <li>Full name</li>
+                            <li>Email address</li>
+                            <li>Phone number (optional)</li>
+                            <li>Educational institution</li>
+                            <li>Course/field of study</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="data-type">
+                        <h4><i class="fas fa-laptop-code"></i> Program Information</h4>
+                        <ul>
+                            <li>Project submissions</li>
+                            <li>Task responses</li>
+                            <li>Progress tracking data</li>
+                            <li>Evaluation results</li>
+                            <li>Certificate preferences</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="data-type">
+                        <h4><i class="fas fa-comments"></i> Communication Data</h4>
+                        <ul>
+                            <li>Emails and messages sent to us</li>
+                            <li>Feedback and survey responses</li>
+                            <li>Support requests</li>
+                            <li>Application form submissions</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="what-we-dont-collect">
+                    <h4><i class="fas fa-ban"></i> What We DON'T Collect</h4>
+                    <p>It is important to note that we <strong>do not collect or store</strong> sensitive data such as:</p>
+                    <ul>
+                        <li>Passwords (handled by secure third-party services)</li>
+                        <li>Banking details or credit card information</li>
+                        <li>Government identification numbers (Aadhaar, PAN, SSN, etc.)</li>
+                        <li>Biometric data</li>
+                        <li>Medical or health information</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Use of Information</h2>
+                <p>The information we collect is used exclusively for legitimate operational purposes:</p>
+                
+                <div class="data-collection-box">
+                    <h4><i class="fas fa-cogs"></i> Primary Uses</h4>
+                    <ul>
+                        <li><strong>Processing Applications:</strong> To review and process internship and job applications</li>
+                        <li><strong>Task Evaluation:</strong> To assess and evaluate submitted work and assignments</li>
+                        <li><strong>Progress Tracking:</strong> To monitor participant progress throughout programs</li>
+                        <li><strong>Administrative Communication:</strong> To send important updates, reminders, and notifications</li>
+                        <li><strong>Certificate Generation:</strong> To create and issue certificates upon successful completion</li>
+                        <li><strong>Service Improvement:</strong> To enhance our programs and services based on feedback</li>
+                    </ul>
+                </div>
+                
+                <div class="security-note">
+                    <h4><i class="fas fa-handshake"></i> Our Promise</h4>
+                    <p>We do not sell, rent, or misuse user data for any external marketing or commercial purposes. Your information is used solely for the purposes outlined in this policy.</p>
+                </div>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Certification Records</h2>
+                <p>In cases where a participant opts for certification, we maintain specific records to ensure authenticity and verification:</p>
+                
+                <ul>
+                    <li><strong>Certificate Generation:</strong> We store necessary data to create personalized certificates</li>
+                    <li><strong>Verification Records:</strong> We maintain records that allow us to verify the authenticity of issued certificates</li>
+                    <li><strong>Unique Identifiers:</strong> Each certificate is assigned a unique ID for tracking and verification purposes</li>
+                    <li><strong>Third-Party Verification:</strong> This allows us to verify certification authenticity should a third party (such as a future employer) inquire</li>
+                </ul>
+                
+                <p>Certification records are maintained for a minimum period as required for verification purposes and in compliance with applicable laws.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Data Sharing</h2>
+                <p>We respect the confidentiality of your data and do not share it with third parties except in specific circumstances:</p>
+                
+                <div class="data-collection-box">
+                    <h4><i class="fas fa-share-alt"></i> Limited Sharing Circumstances</h4>
+                    <ul>
+                        <li><strong>Legal Requirements:</strong> When disclosure is required by law, court order, or government request</li>
+                        <li><strong>Fraud Prevention:</strong> When necessary to prevent misuse, fraud, or illegal activities</li>
+                        <li><strong>Service Providers:</strong> When utilizing essential third-party technical services (such as email providers, form hosting platforms, or cloud storage) strictly to deliver our services to you</li>
+                        <li><strong>With Your Consent:</strong> When you explicitly give us permission to share specific information</li>
+                    </ul>
+                </div>
+                
+                <p>All third-party service providers are carefully selected and required to maintain appropriate security measures to protect your information.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Data Security</h2>
+                <p>We take reasonable and appropriate measures to protect your data from unauthorized access or disclosure:</p>
+                
+                <ul>
+                    <li><strong>Secure Storage:</strong> Data is stored on secure servers with access controls</li>
+                    <li><strong>Encryption:</strong> Sensitive information is encrypted during transmission</li>
+                    <li><strong>Access Controls:</strong> Limited access to personal data based on role requirements</li>
+                    <li><strong>Regular Audits:</strong> Periodic security reviews and updates</li>
+                    <li><strong>Staff Training:</strong> Team members trained in data protection practices</li>
+                </ul>
+                
+                <div class="security-note">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Important Security Notice</h4>
+                    <p>Please be aware that no online system or method of electronic transmission is completely secure. While we strive to protect your information using commercially acceptable means, we cannot guarantee its absolute security. We encourage you to take precautions to protect your personal information when online.</p>
+                </div>
+            </div>
+
+            <div class="privacy-section">
+                <h2>External Links</h2>
+                <p>Our website or communications may contain links to third-party platforms, such as:</p>
+                
+                <ul>
+                    <li>Google Forms for application submissions</li>
+                    <li>Social media platforms (LinkedIn, Facebook, Twitter, Instagram)</li>
+                    <li>Payment processing services</li>
+                    <li>Educational resources and references</li>
+                </ul>
+                
+                <p>We are not responsible for the privacy practices or content of these external sites, and we encourage users to review the privacy policies of any third-party platforms they access. This Privacy Policy applies only to information collected by Zensora Tech.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Your Rights and Choices</h2>
+                <p>You have certain rights regarding your personal information:</p>
+                
+                <div class="data-collection-box">
+                    <h4><i class="fas fa-user-check"></i> Your Privacy Rights</h4>
+                    <ul>
+                        <li><strong>Access:</strong> Request access to the personal information we hold about you</li>
+                        <li><strong>Correction:</strong> Request correction of inaccurate or incomplete information</li>
+                        <li><strong>Deletion:</strong> Request deletion of your personal information in certain circumstances</li>
+                        <li><strong>Opt-out:</strong> Opt out of promotional communications at any time</li>
+                        <li><strong>Data Portability:</strong> Request a copy of your data in a structured, machine-readable format</li>
+                    </ul>
+                </div>
+                
+                <p>To exercise any of these rights, please contact us using the information provided in the "Contact Us" section below.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Policy Updates</h2>
+                
+                <div class="policy-updates">
+                    <h4><i class="fas fa-sync-alt"></i> Updates and Modifications</h4>
+                    <p>Zensora Tech reserves the right to update or modify this Privacy Policy at any time without prior notice to reflect changes in our practices, services, or legal requirements.</p>
+                    
+                    <p>When we make changes to this policy, we will:</p>
+                    <ul>
+                        <li>Update the "Last Updated" date at the bottom of this page</li>
+                        <li>Notify users of significant changes via email or platform announcements</li>
+                        <li>Post the updated policy on our website</li>
+                    </ul>
+                </div>
+                
+                <div class="security-note">
+                    <h4><i class="fas fa-check-circle"></i> Your Consent</h4>
+                    <p>By submitting your information to us or using our services, you formally consent to the terms of this Privacy Policy. Continued use of our services following any changes implies your acceptance of the updated terms.</p>
+                </div>
+            </div>
+
+            <div class="contact-privacy">
+                <h3><i class="fas fa-envelope"></i> Contact Our Privacy Team</h3>
+                <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+                <p>
+                    <strong>Privacy Officer:</strong> Data Protection Team<br>
+                    <strong>Email:</strong> <a href="mailto:admin@zensoratech.in">admin@zensoratech.in</a><br>
+                    <strong>Address:</strong> Prayagraj, Uttar Pradesh 211001.
+                </p>
+                <p>We typically respond to privacy-related inquiries within 3-5 business days.</p>
+            </div>
+
+            <div class="last-updated">
+                <p><i class="fas fa-history"></i> Last Updated: January 2026</p>
+                <p>This Privacy Policy is effective as of the date shown above.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Zensora Tech</h3>
+                    <p>Providing innovative IT solutions and nurturing future tech talent through our internship program.</p>
+                    <div class="social-icons">
+                        <!-- <a href="#"><i class="fab fa-facebook"></i></a> -->
+                        <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
+                        <a href="https://www.linkedin.com/company/zensora-tech/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://t.me/zensoratech" target="_blank"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="tnc.html">Terms and Conditions</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#web-dev">Web Development</a></li>
+                        <li><a href="services.html#mobile-dev">Mobile App Development</a></li>
+                        <li><a href="services.html#it-support">IT Support</a></li>
+                        <li><a href="services.html#consultancy">IT Consultancy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Prayagraj, Uttar Pradesh</li>
+                        <!-- <li><i class="fas fa-phone"></i> +91 88084 95969</li> -->
+                        <li><i class="fas fa-envelope"></i> admin@zensoratech.in</li>
+                        <li><i class="fas fa-envelope"></i> support@zensoratech.in</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Zensora Tech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
