@@ -44,7 +44,7 @@ h1, h2, h3, h4 {
 
 /* Navigation */
 .navbar {
-    background-color: var(--white);
+    background:linear-gradient(135deg,  #7c92f5 0%, #f7f7f7 25%, #7c92f5 100%);
     box-shadow: var(--shadow);
     position: sticky;
     top: 0;
@@ -87,7 +87,7 @@ h1, h2, h3, h4 {
 }
 
 .nav-menu a:hover, .nav-menu a.active {
-    color: var(--primary-color);
+    color: var(--primary-dark);
 }
 
 .nav-menu a.active::after {
@@ -97,19 +97,45 @@ h1, h2, h3, h4 {
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: var(--primary-color);
+    background-color: var(--primary-dark);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* Hover effect - underline animation */
+.nav-menu a:not(.btn-internship)::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+.nav-menu a:not(.btn-internship):hover::before {
+    width: 100%;
 }
 
 .btn-internship {
-    background-color: var(--primary-color);
-    color: white !important;
+    background: linear-gradient(135deg, #FFD700, #FFA500) !important;
+    color: #333 !important;
     padding: 8px 20px !important;
-    border-radius: 4px;
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    transition: all 0.3s ease !important;
 }
 
 .btn-internship:hover {
-    background-color: var(--primary-dark);
-    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5) !important;
+    background: linear-gradient(135deg, #FFA500, #FFD700) !important;
+}
+
+.btn-internship::before {
+    display: none !important;
 }
 
 .menu-toggle {
